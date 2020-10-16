@@ -83,13 +83,6 @@ TEMPLATE_DIRS = (
     os.path.join(BASE_DIR, 'templates'),
 )
 
-CACHES = {
-    'default': {
-        'BACKEND': 'django.core.cache.backends.memcached.PyLibMCCache',
-        'TIMEOUT': 60
-    }
-}
-
 STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
 
 
@@ -156,12 +149,5 @@ CORS_URLS_REGEX = r'^/api/.*$'
 CORS_ALLOW_METHODS = (
         'GET',
     )
-
-# Memcache
-
-from memcacheify import memcacheify
-
-CACHES = memcacheify()
-
 
 APPEND_SLASH = True
