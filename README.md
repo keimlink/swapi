@@ -1,8 +1,20 @@
 # SWAPI
 ## The Star Wars API
 
-## NO LONGER MAINTAINED!
+This SWAPI fork has been equipped with a `Dockerfile` in order to use it for local development.
 
-If you rely on this project for your own tools - then please fork and spin up your own instance. It's a pretty simple project, and the Makefile will take you a long way.
+### Usage
 
-If you are looking for an API to play with to learn about APIs, then I recommend [https://pokeapi.co](https://pokeapi.co).
+Build the Docker image and start the development web server:
+
+```console
+make
+```
+
+Load the data for the SWAPI:
+
+```console
+make load_data
+```
+
+SWAPI is now available at `http://127.0.0.1:8080/` and `http://127.0.0.1:8080/api/`.
