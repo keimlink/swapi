@@ -1,3 +1,4 @@
+MANAGE_PY := docker exec --interactive --tty swapi_runserver python manage.py
 
 install:
 	docker build --tag swapi .
@@ -10,30 +11,28 @@ install:
 		swapi
 
 load_data:
-	python manage.py loaddata planets.json
-	python manage.py loaddata people.json
-	python manage.py loaddata species.json
-	python manage.py loaddata transport.json
-	python manage.py loaddata starships.json
-	python manage.py loaddata vehicles.json
-	python manage.py loaddata films.json
+	$(MANAGE_PY) loaddata planets.json
+	$(MANAGE_PY) loaddata people.json
+	$(MANAGE_PY) loaddata species.json
+	$(MANAGE_PY) loaddata transport.json
+	$(MANAGE_PY) loaddata starships.json
+	$(MANAGE_PY) loaddata vehicles.json
+	$(MANAGE_PY) loaddata films.json
 
 dump_data:
-	python manage.py dumpdata resources.planet > resources/fixtures/planets.json --indent 4
-	python manage.py dumpdata resources.people > resources/fixtures/people.json --indent 4
-	python manage.py dumpdata resources.species > resources/fixtures/species.json --indent 4
-	python manage.py dumpdata resources.starship > resources/fixtures/starships.json --indent 4
-	python manage.py dumpdata resources.vehicle > resources/fixtures/vehicles.json --indent 4
-	python manage.py dumpdata resources.transport > resources/fixtures/transport.json --indent 4
-	python manage.py dumpdata resources.film > resources/fixtures/films.json --indent 4
-
+	$(MANAGE_PY) dumpdata resources.planet > resources/fixtures/planets.json --indent 4
+	$(MANAGE_PY) dumpdata resources.people > resources/fixtures/people.json --indent 4
+	$(MANAGE_PY) dumpdata resources.species > resources/fixtures/species.json --indent 4
+	$(MANAGE_PY) dumpdata resources.starship > resources/fixtures/starships.json --indent 4
+	$(MANAGE_PY) dumpdata resources.vehicle > resources/fixtures/vehicles.json --indent 4
+	$(MANAGE_PY) dumpdata resources.transport > resources/fixtures/transport.json --indent 4
+	$(MANAGE_PY) dumpdata resources.film > resources/fixtures/films.json --indent 4
 
 drop_db:
-	python manage.py flush
+	$(MANAGE_PY) flush
 
 test:
-	python manage.py test
-
+	$(MANAGE_PY) test
 
 clear_cache:
-	python manage.py clear_cache
+	$(MANAGE_PY) clear_cache
