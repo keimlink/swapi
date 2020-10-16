@@ -1,10 +1,13 @@
 
 install:
-	pip install -r requirements.txt
-
-build:
-	python manage.py migrate
-	python manage.py createsuperuser
+	docker build --tag swapi .
+	docker run --interactive \
+		--mount type=bind,src=$$(pwd),dst=/usr/src/app \
+		--name swapi_runserver \
+		--publish 127.0.0.1:8080:8000 \
+		--rm \
+		--tty \
+		swapi
 
 load_data:
 	python manage.py loaddata planets.json
@@ -14,9 +17,6 @@ load_data:
 	python manage.py loaddata starships.json
 	python manage.py loaddata vehicles.json
 	python manage.py loaddata films.json
-
-serve:
-	python manage.py runserver
 
 dump_data:
 	python manage.py dumpdata resources.planet > resources/fixtures/planets.json --indent 4
